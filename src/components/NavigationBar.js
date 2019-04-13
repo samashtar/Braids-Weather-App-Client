@@ -12,7 +12,9 @@ export default class NavigationBar extends Component {
   render() {
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>Braid's Amazing Weather App</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -38,7 +40,7 @@ export default class NavigationBar extends Component {
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-primary">Search</Button>
+            <Button variant="primary">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
