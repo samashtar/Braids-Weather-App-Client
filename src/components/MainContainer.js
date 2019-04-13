@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Spinner, CardDeck } from "react-bootstrap";
 import CardContainer from "./CardContainer";
+import { Route } from "react-router-dom";
+import Card from "./Card";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const URL = `https://cors-anywhere.herokuapp.com/https://wx.wearebraid.com/`;
 
@@ -33,17 +35,28 @@ export default class MainContainer extends Component {
   render() {
     return (
       <div className="mx-auto">
-        <CardDeck>
-          {this.state.isLoading ? (
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          ) : (
-            this.state.allStations.map(station => (
-              <CardContainer key={station.Station} station={station} />
-            ))
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <CardDeck>
+              {this.state.isLoading ? (
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              ) : (
+                this.state.allStations.map(station => (
+                  <CardContainer
+                    key={station.Station}
+                    station={station}
+                    handleClick={this.handleClick}
+                  />
+                ))
+              )}
+            </CardDeck>
           )}
-        </CardDeck>
+        />
+        <Route path="/stations/:id" component={Card} />
       </div>
     );
   }
