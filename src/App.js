@@ -3,7 +3,7 @@ import "./App.css";
 import NavContainer from "./components/NavContainer";
 import MainContainer from "./components/MainContainer";
 
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 class App extends Component {
   render() {
     return (
