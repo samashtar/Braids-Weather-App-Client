@@ -11,8 +11,7 @@ export default class MainContainer extends Component {
     super();
     this.state = {
       isLoading: true,
-      allStations: null,
-      allStationDetails: []
+      allStations: null
     };
   }
 
@@ -26,20 +25,6 @@ export default class MainContainer extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        data.forEach(station => {
-          fetch(`${URL}stations/${station.Station}`, {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${API_KEY}`
-            }
-          })
-            .then(res => res.json())
-            .then(data => {
-              this.setState({
-                allStationDetails: [...this.state.allStationDetails, data]
-              });
-            });
-        });
         this.setState({
           allStations: data,
           isLoading: false
@@ -72,7 +57,7 @@ export default class MainContainer extends Component {
         <Route
           exact
           path="/stations/:id"
-          render={() => <Card details={this.state.allStationDetails} />}
+          render={props => <Card {...props} />}
         />
       </div>
     );
